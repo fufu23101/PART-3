@@ -1,0 +1,202 @@
+/* Reset default browser styles and set box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styling for typography and layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #111; /* Dark background for contrast */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    margin-bottom: 30px;
+}
+
+/* Navbar list layout */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center links horizontally */
+    flex-wrap: wrap; /* Wrap items on smaller screens */
+    gap: 20px; /* Spacing between links */
+}
+
+/* Navbar links */
+.navbar li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for navbar links */
+.navbar li a:hover {
+    color: #ffcc00; /* Highlight color on hover */
+}
+
+/* Heading styles */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Flex layout for images in the "About" section */
+.about-images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Image styling in the "About" section */
+.about-images img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Light shadow for depth */
+    transition: transform 0.3s ease; /* Smooth scaling on hover */
+}
+
+/* Image hover effect */
+.about-images img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Description text styling */
+.description {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-size: 17px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+/* Benefits list styling */
+ul.benefits {
+    list-style-type: disc;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: 16px;
+    padding-left: 20px; /* Indentation for bullet points */
+}
+
+/* Team section container */
+.team-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Individual team member block */
+.team-member {
+    margin-bottom: 40px;
+}
+
+/* Team member image styling */
+.team-member img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* Circular images */
+    object-fit: cover; /* Maintain aspect ratio */
+    margin-bottom: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2); /* Deeper shadow for profile pictures */
+}
+
+/* Team member text */
+.team-member p {
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+/* Horizontal rule styling */
+hr {
+    width: 60%;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    /* Make images responsive on small devices */
+    .about-images img,
+    .team-member img {
+        width: 90%;
+    }
+
+    /* Stack navbar items vertically */
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Gallery */
+.about-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.about-images img {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+.about-images img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox Modal */
+#lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+.lightbox-content {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+#lightbox-caption {
+  text-align: center;
+  color: #fff;
+  padding: 15px;
+  font-size: 18px;
+}
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #ccc;
+}
+
+

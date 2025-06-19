@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enquiry Form | FUFU 23 Jordan Sneakers</title>
+
+  <style>
+    /* ====== Reset and Base Styling ====== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 32px;
+      color: #222;
+    }
+
+    p.description {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fdfdfd;
+      font-size: 16px;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #1a73e8;
+      outline: none;
+      background-color: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    #formMessage {
+      color: red;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: #1a73e8;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #155ec0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Enquiry Form</h1>
+    <p class="description">Please fill out the form below and we’ll get back to you shortly.</p>
+
+    <form id="enquiryForm" action="action_page.php" method="post" novalidate>
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your first name..." required />
+
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..." required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="phone">Phone Number (Optional)</label>
+      <input type="tel" id="phone" name="phone" placeholder="e.g. +27 82 123 4567" />
+
+      <label for="country">Country</label>
+      <select id="country" name="country" required>
+        <option value="">--Select your country--</option>
+        <option value="South Africa">South Africa</option>
+        <option value="Canada">Canada</option>
+        <option value="USA">USA</option>
+      </select>
+
+      <label for="enquiryType">Enquiry Type</label>
+      <select id="enquiryType" name="enquiryType" required>
+        <option value="">--Select Enquiry Type--</option>
+        <option value="Complaint">Complaint</option>
+        <option value="Question">Question</option>
+        <option value="Feedback">Feedback</option>
+      </select>
+
+      <label for="subject">Your Message</label>
+      <textarea id="subject" name="subject" placeholder="Write your message here..." required></textarea>
+
+      <p id="formMessage"></p>
+
+      <input type="submit" value="Submit Enquiry" />
+    </form>
+  </div>
+
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("enquiryForm");
+    const message = document.getElementById("formMessage");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop default form submission
+
+      const firstName = document.getElementById("fname").value.trim();
+      const lastName = document.getElementById("lname").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const country = document.getElementById("country").value;
+      const enquiryType = document.getElementById("enquiryType").value;
+      const subject = document.getElementById("subject").value.trim();
+
+      let errors = [];
+
+      // Validate fields
+      if (firstName === "") errors.push("First name is required.");
+      if (lastName === "") errors.push("Last name is required.");
+
+      const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+      if (!emailPattern.test(email)) errors.push("Enter a valid email address.");
+
+      if (country === "") errors.push("Please select your country.");
+      if (enquiryType === "") errors.push("Please select your enquiry type.");
+      if (subject.length < 10) errors.push("Please enter a message of at least 10 characters.");
+
+      if (errors.length > 0) {
+        message.innerHTML = errors.map(e => `<div>• ${e}</div>`).join("");
+        message.style.color = "#b00020";
+        message.style.backgroundColor = "#ffeaea";
+        message.style.border = "1px solid #f44336";
+        message.style.padding = "12px";
+        message.style.borderRadius = "5px";
+      } else {
+        // ✅ Enquiry processed (simulated)
+        message.innerHTML = `<strong>Thank you, ${firstName}!</strong><br>Your enquiry has been submitted successfully. We’ll respond shortly.`;
+        message.style.color = "green";
+        message.style.backgroundColor = "#e8f5e9";
+        message.style.border = "1px solid #4caf50";
+        message.style.padding = "14px";
+        message.style.borderRadius = "6px";
+
+        // Optional: hide the form after successful submission
+        form.style.display = "none";
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
